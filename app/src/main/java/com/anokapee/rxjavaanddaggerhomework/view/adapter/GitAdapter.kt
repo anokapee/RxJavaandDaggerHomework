@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.anokapee.rxjavaanddaggerhomework.databinding.GitItemLayoutBinding
 import com.anokapee.rxjavaanddaggerhomework.model.data.GitResponseItem
 
-class GitAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class GitAdapter(): RecyclerView.Adapter<GitAdapter.ListViewHolder>() {
 
     interface GitDelegate{
         fun selectRepo(gitResponseItem: GitResponseItem)
@@ -21,7 +21,7 @@ class GitAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             notifyDataSetChanged()
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
        return ListViewHolder(
             GitItemLayoutBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -31,9 +31,10 @@ class GitAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         )
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val gitResponseItem = listGitResponseItem[position]
-        
+
+
         holder.binding.repo.text = gitResponseItem.name
 
     }
