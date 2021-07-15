@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RxJavaandDaggerHomework</string>
+    <string name="no_internet_message">No Internet connection. Please connect to the internet to see more.</string>
+</resources>
