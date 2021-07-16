@@ -46,10 +46,11 @@ class GitFragment : Fragment(), GitAdapter.GitDelegate {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-    //    gitSelect = context as GitSelect
+       gitSelect = context as MainActivity
     }
 
     override fun selectRepo(gitResponseItem: GitResponseItem) {
+        gitSelect.openDetailsFragment(gitResponseItem)
         Log.d("TAG_X", "selected ${gitResponseItem.name}")
     }
 }

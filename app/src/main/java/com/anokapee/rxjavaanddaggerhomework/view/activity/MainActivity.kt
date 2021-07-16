@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import androidx.activity.viewModels
 import com.anokapee.rxjavaanddaggerhomework.R
 import com.anokapee.rxjavaanddaggerhomework.databinding.ActivityMainBinding
+import com.anokapee.rxjavaanddaggerhomework.model.data.GitResponseItem
 import com.anokapee.rxjavaanddaggerhomework.view.adapter.GitAdapter
+import com.anokapee.rxjavaanddaggerhomework.view.fragment.GitDetailsFragment
 import com.anokapee.rxjavaanddaggerhomework.view.fragment.GitFragment
 import com.anokapee.rxjavaanddaggerhomework.viewmodel.GitViewModel
 
@@ -17,7 +19,7 @@ import com.anokapee.rxjavaanddaggerhomework.viewmodel.GitViewModel
 //Must use Dagger2 for dependency injection
 //Open details of RepoItem in a fragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), GitFragment.GitSelect {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var mainFrag: GitFragment
@@ -31,5 +33,14 @@ class MainActivity : AppCompatActivity() {
         mainFrag = supportFragmentManager.findFragmentById(R.id.main_frag) as GitFragment
 
 
+    }
+
+    override fun openDetailsFragment(item: GitResponseItem) {
+        val frag = GitDetailsFragment.getInstance(item)
+
+        supportFragmentManager.beginTransaction()
+            .add(R.id.git_details_frame, frag)
+            .addToBackStack(frag.tag)
+            .commit()
     }
 }

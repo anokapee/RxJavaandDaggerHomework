@@ -1,5 +1,10 @@
 package com.anokapee.rxjavaanddaggerhomework.model.data
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
+
+@Parcelize
 data class GitResponseItem(
     val archive_url: String,
     val archived: Boolean,
@@ -16,7 +21,7 @@ data class GitResponseItem(
     val created_at: String,
     val default_branch: String,
     val deployments_url: String,
-    val description: Any,
+    val description: @RawValue Any,
     val disabled: Boolean,
     val downloads_url: String,
     val events_url: String,
@@ -34,7 +39,7 @@ data class GitResponseItem(
     val has_pages: Boolean,
     val has_projects: Boolean,
     val has_wiki: Boolean,
-    val homepage: Any,
+    val homepage: @RawValue Any,
     val hooks_url: String,
     val html_url: String,
     val id: Int,
@@ -45,16 +50,16 @@ data class GitResponseItem(
     val labels_url: String,
     val language: String,
     val languages_url: String,
-    val license: Any,
+    val license: @RawValue Any,
     val merges_url: String,
     val milestones_url: String,
-    val mirror_url: Any,
+    val mirror_url: @RawValue Any,
     val name: String,
     val node_id: String,
     val notifications_url: String,
     val open_issues: Int,
     val open_issues_count: Int,
-    val owner: Owner,
+    val owner: @RawValue Owner,
     val `private`: Boolean,
     val pulls_url: String,
     val pushed_at: String,
@@ -74,4 +79,4 @@ data class GitResponseItem(
     val url: String,
     val watchers: Int,
     val watchers_count: Int
-)
+) : Parcelable

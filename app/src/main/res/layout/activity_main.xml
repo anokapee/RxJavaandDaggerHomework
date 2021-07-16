@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".view.activity.MainActivity">
 
+    <FrameLayout
+        android:elevation="8dp"
+        android:id="@+id/git_details_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
     <TextView
         android:visibility="gone"
         android:id="@+id/internet_tv"

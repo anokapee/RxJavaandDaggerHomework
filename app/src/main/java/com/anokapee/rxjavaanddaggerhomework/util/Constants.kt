@@ -7,5 +7,7 @@ class Constants {
 
         const val DATABASE_NAME = "git.db"
         const val CACHE_KEY = 1
+
+        const val PARSE_KEY = "KEY"
     }
 }
