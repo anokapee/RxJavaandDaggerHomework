@@ -5,23 +5,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.anokapee.rxjavaanddaggerhomework.model.GitRepository
 import com.anokapee.rxjavaanddaggerhomework.model.data.GitResponseItem
+import com.anokapee.rxjavaanddaggerhomework.util.GitSingleton.Companion.gitComponent
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class GitViewModel: ViewModel() {
 
     val gitData = MutableLiveData<List<GitResponseItem>>()
-    private val repo = GitRepository()
     private val compDisposable = CompositeDisposable()
 
     init {
         compDisposable.add(
-            repo.readFromRemote()
+            gitComponent.getRepo().readFromRemote()
                 .observeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
                 .map { gitRes ->
                     Log.d("TAG_X", "saving to cache - on ${Thread.currentThread().name}")
-                    repo.saveToCache(gitRes)
+                    gitComponent.getRepo().saveToCache(gitRes)
                     gitRes
                 }
                 .subscribe({ gitResponse ->
@@ -30,7 +30,7 @@ class GitViewModel: ViewModel() {
                 },{ throwable ->
                     Log.d("TAG_X", "Oops: ${throwable.localizedMessage}")
                     Log.d("TAG_X", "Reading from cache")
-                    gitData.postValue(repo.readFromCache())
+                    gitData.postValue(gitComponent.getRepo().readFromCache())
                 })
         )
     }

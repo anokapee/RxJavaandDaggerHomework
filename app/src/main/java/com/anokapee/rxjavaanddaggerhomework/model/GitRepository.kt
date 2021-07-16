@@ -7,10 +7,11 @@ import com.anokapee.rxjavaanddaggerhomework.network.GitRetrofit
 import com.anokapee.rxjavaanddaggerhomework.util.Constants.Companion.CACHE_KEY
 import com.google.gson.Gson
 import io.reactivex.Single
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class GitRepository {
-
-    private val gitRetrofit = GitRetrofit()
+@Singleton
+class GitRepository @Inject constructor(private val gitRetrofit: GitRetrofit){
 
     fun readFromRemote(): Single<GitResponse> = gitRetrofit.getReposRemote()
 
