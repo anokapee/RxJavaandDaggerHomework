@@ -1,6 +1,7 @@
 package com.anokapee.rxjavaanddaggerhomework.view.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,6 +42,13 @@ class GitDetailsFragment: Fragment() {
 
         arguments?.getParcelable<GitResponseItem>(PARSE_KEY)?.let {
             binding.gitDetailsName.text = it.name
+            binding.descriptionResponse.text = it.description as String
+
+            Log.d("TAG_X", "${it.description}")
+            binding.languageResponse.text = it.language
+            binding.collabResponse.text = it.collaborators_url
+            binding.contributorsResponse.text = it.contributors_url
+            binding.urlResponse.text = it.html_url
         }
 
     }
