@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.anokapee.rxjavaanddaggerhomework.databinding.GitItemLayoutBinding
 import com.anokapee.rxjavaanddaggerhomework.model.data.GitResponseItem
 
-class GitAdapter(): RecyclerView.Adapter<GitAdapter.ListViewHolder>() {
+class GitAdapter(private val delegate: GitDelegate): RecyclerView.Adapter<GitAdapter.ListViewHolder>() {
 
     interface GitDelegate{
         fun selectRepo(gitResponseItem: GitResponseItem)
@@ -36,6 +36,9 @@ class GitAdapter(): RecyclerView.Adapter<GitAdapter.ListViewHolder>() {
 
 
         holder.binding.repo.text = gitResponseItem.name
+        holder.binding.root.setOnClickListener {
+            delegate.selectRepo(gitResponseItem)
+        }
 
     }
 
